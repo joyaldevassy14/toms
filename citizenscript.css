@@ -1,0 +1,278 @@
+#outer{
+    display:list-item
+
+}
+#header{
+    width:100%;
+    height: 50px;
+    background:#ffa31a;
+    padding-left:10px;
+    padding-top:10px;
+    position:relative;
+}
+#logo{
+    width:25px;
+    height:25px;
+    margin-left:10px;
+    text-decoration: none;
+}
+body{
+    margin:0px;
+}
+#logo2{
+    width:100%;
+    height:100px;
+    background:rgba(255, 255, 255, 0.936);
+    margin-left: 25px;
+    padding-top: 10px;
+    float:left;
+    position:relative;
+}
+#logotoms{
+
+    width:80px;
+    height:70px;
+
+}
+#titletoms{
+    font-style: normal;
+    font-weight:700;
+    font-size:25px;
+    position:absolute;
+    left:100px;
+    top:10px;
+
+
+}
+#logout{
+    margin-left: 100px;
+    margin-right: 10px;
+    padding-top: 20px;
+    position:absolute;
+    right:15px;
+    top:15px;
+    text-decoration: none;
+}
+#title{
+    width:100%;
+    height: 250px;
+    position:relative;
+
+}
+#road{
+    width:100%;
+    height:100%;
+
+}
+#titlecitizen{
+    color: white;
+    font-size: 44px;
+    font-style: normal;
+    position: absolute;
+    left: 36%;
+    top: 145px;
+
+
+
+
+}
+#features{
+    background: white;
+    width:100%;
+    height:100px;
+    padding-top: 250px;
+    margin-left: 50px;
+}
+
+.bt1{
+    width:180px;
+    height:80px;
+    position:relative;
+    left:20px;
+    text-decoration: none;
+}
+#main{
+    width:98%;
+    height:500px;
+    background:blue;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-left: 20px;
+
+
+}
+#footer{
+    width:100%;
+    height:800px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background: black;
+    position:relative;
+    padding-left: 10px;
+    padding-top: 20px;
+    float:left;
+
+}
+#f1{
+    width:30%;
+    height:100%;
+    position:relative;
+    padding-left: 10px;
+    padding-top:10px;
+    float:left;
+
+}
+.about{
+    color:white;
+
+}
+.para{
+    color:white;
+
+}
+#f2{
+    width:30%;
+    height:100%;
+    color:aquamarine;
+    position:absolute;
+    left:30%;
+    margin-left: 10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    float:left;
+}
+#f3{
+    width:30%;
+    height:100%;
+    position:absolute;
+    color:azure;
+    margin-left: 10px;
+    padding-left: 40px;
+    padding-top: 10px;
+    left:60%;
+    float:left;
+}
+
+.red{
+    color:red;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+#onlineinner{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background:#f6fd38;
+    float :left;
+
+}
+.onlinebt{
+    width: 300px;
+    height: 61px;
+    margin-left: 80px;
+    float: left;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(53, 53, 199);
+    font-size: medium;
+    font-weight: bold;
+    position: relative;
+    top: 60px;
+    left: 167px;
+}
+
+.onlinebt2{
+    width: 300px;
+    height: 61px;
+    margin-left: 80px;
+    float: left;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(53, 53, 199);
+    font-size: medium;
+    font-weight: bold;
+    position: relative;
+    top: 145px;
+    left: -213px
+
+}
+.atag{
+    text-decoration: none;
+
+}
+.a1{
+    text-decoration: none;
+    color:white;
+}
+#if1{
+    width: 102%;
+    height: 100%;
+    position: relative;
+    left: -20px;
+}
+
+    
+.lab{
+    font-size: x-large;
+    font-weight: 200;
+    color:blue;
+}
+.txt1{
+    width:300px;
+    height:20px;
+}
+
+#fform{
+    position:relative;
+    top:50px;
+    left:150px;
+}
+#finner{
+    background: #f6fd38;
+    height:500px;
+}
+#ftable{
+    position:relative;
+    left:91px;
+
+}
+#fsub{
+    height:50px;
+    width:100px;
+    position:relative;
+    top:30px;
+    left:300px;
+    font-size: larger;
+}
+#frminner{
+    background:yellow;
+    height:500px;
+    position:relative;
+    top:-25px;
+
+
+}
+.frma{
+    color:blue;
+    font-size: larger;
+}
+.frmh{
+    font-size: larger;
+    position:relative;
+    top:50px;
+    left:50px;
+}
+.frmouter{
+    width:100%;
+    height:100%;
+
+}
+.lab{
+    font-weight: bold;
+}
+.indexa{
+    text-decoration: none;
+}
