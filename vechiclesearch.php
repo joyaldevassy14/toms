@@ -53,6 +53,7 @@
         th, td {
             padding: 8px;
             border-bottom: 1px solid #ddd;
+            text-align: center;
         }
 
         th {
@@ -93,8 +94,8 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-<br>
-<br>
+    <br>
+    <br>
     <?php
     // Assuming you have already established a database connection
     // Replace the database connection details with your own
@@ -117,17 +118,17 @@
         // Sanitize the input to prevent SQL injection
         $vehicleno = mysqli_real_escape_string($conn, $_POST["vehicleno"]);
 
-        // Prepare the SQL statement
-        $sql = "SELECT VECHICLENO, OWNERNAME, ADRESS, TYPE, MOB, EMAIL, MODEL, `DATE` FROM vechiclereg WHERE VECHICLENO = '$vehicleno'";
+        // Prepare the SQL statement for fetching vehicle details from vechiclereg table
+        $vehicleSql = "SELECT VECHICLENO, OWNERNAME, ADRESS, TYPE, MOB, EMAIL, MODEL, `DATE` FROM vechiclereg WHERE VECHICLENO = '$vehicleno'";
 
-        // Execute the query
-        $result = $conn->query($sql);
+        // Execute the query to fetch vehicle details
+        $vehicleResult = $conn->query($vehicleSql);
 
         // Check if any rows are returned
-        if ($result->num_rows > 0) {
-            // Display the details in a vertical table format
+        if ($vehicleResult->num_rows > 0) {
+            // Display the vehicle details in a table format
             echo "<table>";
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $vehicleResult->fetch_assoc()) {
                 echo "<tr><th>Vehicle Number</th><td>" . $row["VECHICLENO"] . "</td></tr>";
                 echo "<tr><th>Owner Name</th><td>" . $row["OWNERNAME"] . "</td></tr>";
                 echo "<tr><th>Address</th><td>" . $row["ADRESS"] . "</td></tr>";
@@ -139,12 +140,65 @@
             }
             echo "</table>";
 
+            // Fetching and displaying the details from the "accident" table
+            $accidentSql = "SELECT ACDNO, PLACE, DATE, NAME, MOB, VERIFIED FROM accident WHERE VECHICLENO = '$vehicleno'";
+            $accidentResult = $conn->query($accidentSql);
+            echo"<br>";
+            echo"<br>";
+            if ($accidentResult->num_rows > 0) {
+                echo "<h3 style='text-align: center;'>Accident Details</h3>";
+                echo "<table>";
+                echo "<tr><th>ACDNO</th><th>VECHICLENO</th><th>PLACE</th><th>DATE</th><th>NAME</th><th>MOB</th><th>VERIFIED</th></tr>";
+                while ($row = $accidentResult->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["ACDNO"] . "</td>";
+                    echo "<td>" . $vehicleno . "</td>";
+                    echo "<td>" . $row["PLACE"] . "</td>";
+                    echo "<td>" . $row["DATE"] . "</td>";
+                    echo "<td>" . $row["NAME"] . "</td>";
+                    echo "<td>" . $row["MOB"] . "</td>";
+                    echo "<td>" . $row["VERIFIED"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p style='text-align: center;'>No accident details found for the provided vehicle number.</p>";
+            }
+
+            // Fetching and displaying the details from the "challan" table
+            $challanSql = "SELECT CMNO, CHNO, VECHICLENO, DRIVERNAME, CRIME, FINE, DATE, PLACE, PAID FROM challan WHERE VECHICLENO = '$vehicleno'";
+            $challanResult = $conn->query($challanSql);
+            echo"<br>";
+            echo"<br>";
+            if ($challanResult->num_rows > 0) {
+                echo "<h3 style='text-align: center;'>Challan Details</h3>";
+                echo "<table>";
+                echo "<tr><th>CMNO</th><th>CHNO</th><th>VECHICLENO</th><th>DRIVERNAME</th><th>CRIME</th><th>FINE</th><th>DATE</th><th>PLACE</th><th>PAID</th></tr>";
+                while ($row = $challanResult->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["CMNO"] . "</td>";
+                    echo "<td>" . $row["CHNO"] . "</td>";
+                    echo "<td>" . $vehicleno . "</td>";
+                    echo "<td>" . $row["DRIVERNAME"] . "</td>";
+                    echo "<td>" . $row["CRIME"] . "</td>";
+                    echo "<td>" . $row["FINE"] . "</td>";
+                    echo "<td>" . $row["DATE"] . "</td>";
+                    echo "<td>" . $row["PLACE"] . "</td>";
+                    echo "<td>" . $row["PAID"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p style='text-align: center;'>No challan details found for the provided vehicle number.</p>";
+            }
+            echo"<br>";
+            echo"<br>";
             // Print button
             echo '<div class="print-button">';
             echo '<button onclick="printDetails()">Print</button>';
             echo '</div>';
         } else {
-            echo "No details found for the provided vehicle number.";
+            echo "<p style='text-align: center;'>No details found for the provided vehicle number.</p>";
         }
     }
 

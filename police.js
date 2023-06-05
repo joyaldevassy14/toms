@@ -10,7 +10,7 @@ function display(n)
             //.getElementById("if1").src="feedback.php";
         //}
         if(n=='c'){
-            document.getElementById("if1").src="forms.html";
+            document.getElementById("if1").src="verificationpolice.html";
         }
         
  }
