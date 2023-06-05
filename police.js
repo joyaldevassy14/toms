@@ -1,14 +1,14 @@
 function display(n)
 {
         if(n=='a'){
-            document.getElementById("if1").src="onlineservices.html";
+            document.getElementById("if1").src="vechiclepolice.html";
         }
         if(n=='b'){
-            document.getElementById("if1").src="informationservices.html";
+            document.getElementById("if1").src="challanpolice.html";
         }
-        if(n=='d'){
-            document.getElementById("if1").src="feedback.php";
-        }
+        //if(n=='d'){
+            //.getElementById("if1").src="feedback.php";
+        //}
         if(n=='c'){
             document.getElementById("if1").src="forms.html";
         }
