@@ -26,8 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case "No helmet":
             $fine = 500;
             break;
+        case "No mirror":
+                $fine = 300;
+                break;
         case "No seatbelt":
-            $fine = 250;
+            $fine = 500;
             break;
         case "Number Plate Modification":
         case "Rash driving":
