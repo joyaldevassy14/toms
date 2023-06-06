@@ -1,20 +1,31 @@
 <?php
-// Database credentials
+// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "project";
 
-// Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the "CRIME" table where VERIFIED='N'
-$sql = "SELECT * FROM CRIME WHERE VERIFIED='N'";
+// Handle form submission
+if (isset($_POST['verify'])) {
+    $cmno = $_POST['cmno'];
+
+    // Update VERIFIED attribute to 'YES' in CRIME table
+    $updateSql = "UPDATE CRIME SET VERIFIED = 'YES' WHERE CMNO = '$cmno'";
+    $conn->query($updateSql);
+
+    // Redirect to the same page to refresh the data
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
+}
+
+// Retrieve data from CRIME table where verified attribute value is 'N'
+$sql = "SELECT CMNO, VEHICLENO, CRIMEDONE, PLACE, DATE, PROOF, NAME, MOB, VERIFIED FROM CRIME WHERE VERIFIED = 'N'";
 $result = $conn->query($sql);
 ?>
 
@@ -28,31 +39,36 @@ $result = $conn->query($sql);
             border-collapse: collapse;
         }
 
-        th, td {
+        table th,
+        table td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
-        tr:hover {
+        table tr:hover {
             background-color: #f5f5f5;
         }
 
-        .verify-btn {
+        form {
+            display: inline;
+        }
+
+        input[type="submit"] {
             background-color: #4CAF50;
             color: white;
+            padding: 6px 12px;
             border: none;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h2>Crime Data</h2>
     <table>
         <tr>
             <th>CMNO</th>
@@ -69,29 +85,42 @@ $result = $conn->query($sql);
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["CMNO"] . "</td>";
-                echo "<td>" . $row["VEHICLENO"] . "</td>";
-                echo "<td>" . $row["CRIMEDONE"] . "</td>";
-                echo "<td>" . $row["PLACE"] . "</td>";
-                echo "<td>" . $row["DATE"] . "</td>";
-                echo "<td>" . $row["PROOF"] . "</td>";
-                echo "<td>" . $row["NAME"] . "</td>";
-                echo "<td>" . $row["MOB"] . "</td>";
-                echo "<td>" . $row["VERIFIED"] . "</td>";
-                echo "<td>
-                        <form method='post' action='" . $_SERVER["PHP_SELF"] . "'>
-                            <input type='hidden' name='cmno' value='" . $row["CMNO"] . "'>
-                            <input type='submit' name='verify' value='Verify' class='verify-btn'>
+                $cmno = $row['CMNO'];
+                $vehicleno = $row['VEHICLENO'];
+                $crimedone = $row['CRIMEDONE'];
+                $place = $row['PLACE'];
+                $date = $row['DATE'];
+                $proof = $row['PROOF'];
+                $name = $row['NAME'];
+                $mob = $row['MOB'];
+                $verified = $row['VERIFIED'];
+
+                ?>
+
+                <tr>
+                    <td><?php echo $cmno; ?></td>
+                    <td><?php echo $vehicleno; ?></td>
+                    <td><?php echo $crimedone; ?></td>
+                    <td><?php echo $place; ?></td>
+                    <td><?php echo $date; ?></td>
+                    <td><?php echo $proof; ?></td>
+                    <td><?php echo $name; ?></td>
+                    <td><?php echo $mob; ?></td>
+                    <td><?php echo $verified; ?></td>
+                    <td>
+                        <form method="POST" action="">
+                            <input type="hidden" name="cmno" value="<?php echo $cmno; ?>">
+                            <input type="submit" name="verify" value="Verify">
                         </form>
-                      </td>";
-                echo "</tr>";
+                    </td>
+                </tr>
+
+                <?php
             }
         } else {
-            echo "<tr><td colspan='10'>No records found.</td></tr>";
+            echo "No data found.";
         }
 
-        // Close the connection
         $conn->close();
         ?>
     </table>
